@@ -10,7 +10,7 @@ let windEl = document.querySelector('#wind');
 let humidityEl = document.querySelector('#humidity');
 let btnEl = document.querySelector('.btn');
 
-// let APIKey = "447b3007c14c6a40015847c686fd487a";
+let APIKey = "447b3007c14c6a40015847c686fd487a";
 
 // let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
 
@@ -19,44 +19,48 @@ let btnEl = document.querySelector('.btn');
 //TODO: show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
 //TODO: show 5 Day Forcast for city searched
 //TODO: add local storage
-let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=27103&units=imperial&appid=447b3007c14c6a40015847c686fd487a";
 
-function fetchData() {
-    console.log("TEST")
+let formInputSubmit = function (event) {
+    event.preventDefault();
+    let cityInput = cityInputEl.value.trim();
+    if(cityInput){
+        getCity(cityInput);
+        cityInputEl.value = '';
+    } else {
+        alert('Please enter a city name');
+    }
+}
+
+let getCity = function(city) {
+    let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+
     fetch(queryURL)
-        .then(response => response.json())
-        .then(data => console.log(data));
-    sleep(1000);
-}
+    .then(function(response) {
+        if(response.ok) {
+            console.log(response);
+            response.json().then(function(data) {
+                console.log(data);
+                let nameCity = data['name']
+                let icn = data['weather']['icon']
+                console.log(icn)
+                let localTemp = data['main']['temp']
+                let windSpeed = data['wind']['speed']
+                let humid = data['main']['humidity']
 
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-}
+            cityNameEl.innerHTML=`${nameCity}`
+            weatherIconEl.innerHTML = `${icn}`
+            tempEl.innerHTML = `Temp: ${localTemp}°F`
+            windEl.innerHTML = `Wind: ${windSpeed} MPH`
+            humidityEl.innerHTML = `Humidity: ${humid}%`
 
-btnEl.addEventListener('click', fetchData);
+            });
+        } else {
+            alert('Error: ' + response.statusText);
+        }
+    });
+};
 
-// btnEl.addEventListener('click', () => {
-//     fetch(queryURL)
-//     .then((response) => response.json())
-//     .then(data => {
-
-//     let nameCity = data['name']
-//     console.log(data['name'])
-//     let localTemp = data['main']['temp']
-//     let wndspd = data['wind']['speed']
-//     let icn = data['icon']
-
-//     cityNameEl.innerHTML=`${nameCity}`
-//     tempEl.innerHTML = `${localTemp}`
-//     windEl.innerHTML = `${wndspd}`
-//     weatherIconEl.innerHTML = `${icn}`
-
-//     })
-// })
+cityFormEl.addEventListener('submit', formInputSubmit);
 
 // Displays current date in the header as Day of week, Month date (i.e. Monday, January 2)
 const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
