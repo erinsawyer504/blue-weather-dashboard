@@ -10,22 +10,39 @@ let windEl = document.querySelector('#wind');
 let humidityEl = document.querySelector('#humidity');
 let btnEl = document.querySelector('.btn');
 
-let APIKey = "447b3007c14c6a40015847c686fd487a";
-//let city;
-let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
+// let APIKey = "447b3007c14c6a40015847c686fd487a";
+
+// let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
 
 //TODO: add a search for a city
 //TODO: add in buttons for previous cities searched
 //TODO: show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
 //TODO: show 5 Day Forcast for city searched
 //TODO: add local storage
+let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=27103&units=imperial&appid=447b3007c14c6a40015847c686fd487a";
 
-btnEl.addEventListener('click', () => {
+function fetchData() {
+    console.log("TEST")
     fetch(queryURL)
-    .then(response => response.json())
-    .then(data => console.log(data))
-})
-  
+        .then(response => response.json())
+        .then(data => console.log(data));
+    sleep(1000);
+}
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
+
+btnEl.addEventListener('click', fetchData);
+
+// btnEl.addEventListener('click', () => {
+//     fetch(queryURL)
+//     .then((response) => response.json())
+//     .then(data => {
 
 //     let nameCity = data['name']
 //     console.log(data['name'])
