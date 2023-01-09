@@ -50,7 +50,7 @@ let getCity = function(city) {
                 let humid = data['main']['humidity']
 
             cityNameEl.innerHTML=`${nameCity}`
-            weatherIconEl.innerHTML = `<img src="./assets/icons/${icn}.png"/> `
+            weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `
             tempEl.innerHTML = `Temp: ${localTemp}°F`
             windEl.innerHTML = `Wind: ${windSpeed} MPH`
             humidityEl.innerHTML = `Humidity: ${humid}%`
