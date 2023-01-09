@@ -12,13 +12,25 @@
             <h1 id="title">Weather Dashboard</h1>
         </header>
         <aside>
-            <div id="citySearch">
+            <div class="side">
+                <h3 class="side-header">Search for a City:</h3>
+                <form id="city-form" class="side-body">
+                    <label class="form-label" for="city"></label>
+                    <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                    <button type="submit" class="btn">Search</button>
+                </form>
             </div>
-            <div id="cities">
+            <div class="card">
             </div>
         </aside>
         <main>
             <div id="cityInfo">
+                <div id="cityName"></div>
+                <div id="currentDate"></div>
+                <div id="weatherIcon"></div>
+                <div id="temp">°F</div>
+                <div id="wind">MPH</div>
+                <div id="humidity">%</div>
             </div>
             <div id="forecast">              
             </div>
@@ -26,6 +38,6 @@
         <footer></footer>
 
 
-        <script src="./assets/script.js"></script>    
+        <script src="./assets/js/script.js"></script>    
     </body>
 </html>
