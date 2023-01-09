@@ -8,10 +8,11 @@ let weatherIconEl = document.querySelector('#weatherIcon');
 let tempEl = document.querySelector('#temp');
 let windEl = document.querySelector('#wind');
 let humidityEl = document.querySelector('#humidity');
+let btnEl = document.querySelector('.btn');
 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 //let city;
-let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&appid=" + APIKey;
+let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
 
 //TODO: add a search for a city
 //TODO: add in buttons for previous cities searched
@@ -19,4 +20,27 @@ let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl
 //TODO: show 5 Day Forcast for city searched
 //TODO: add local storage
 
-fetch(queryURL);
+btnEl.addEventListener('click', () => {
+    fetch(queryURL)
+    .then(response => response.json())
+    .then(data => console.log(data))
+})
+  
+
+//     let nameCity = data['name']
+//     console.log(data['name'])
+//     let localTemp = data['main']['temp']
+//     let wndspd = data['wind']['speed']
+//     let icn = data['icon']
+
+//     cityNameEl.innerHTML=`${nameCity}`
+//     tempEl.innerHTML = `${localTemp}`
+//     windEl.innerHTML = `${wndspd}`
+//     weatherIconEl.innerHTML = `${icn}`
+
+//     })
+// })
+
+// Displays current date in the header as Day of week, Month date (i.e. Monday, January 2)
+const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
+$('#currentDate').append($day);
