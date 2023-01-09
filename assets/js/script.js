@@ -12,6 +12,7 @@ let btnEl = document.querySelector('.btn');
 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
+
 ////add a search for a city
 //TODO: add in buttons for previous cities searched
 ////show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
@@ -68,9 +69,8 @@ let getCity = function(city) {
 //temp -temp day or main temp i dont know
 //wind - wind speed
 //humidity - main humidity
-let getForcast = function(lat, lon) {
-    // let forcastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`;
-    let forcastURL = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=447b3007c14c6a40015847c686fd487a`
+let getForcast = function(city) {
+let forcastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`;
     fetch(forcastURL)
     .then(function(response) {
         console.log(response);
