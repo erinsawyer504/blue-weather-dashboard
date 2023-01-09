@@ -12,12 +12,11 @@ let btnEl = document.querySelector('.btn');
 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
-// let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
-
 ////add a search for a city
 //TODO: add in buttons for previous cities searched
 ////show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
 //TODO: show 5 Day Forcast for city searched
+//TODO: 5 forcast - date, icon, temp, wind, humidity
 //TODO: add local storage
 //TODO: add show class for #cityinfo so that the border only shows when a city is searched
 
@@ -33,7 +32,7 @@ let formInputSubmit = function (event) {
 }
 
 let getCity = function(city) {
-    let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
 
     fetch(queryURL)
     .then(function(response) {
@@ -42,9 +41,7 @@ let getCity = function(city) {
             response.json().then(function(data) {
                 console.log(data);
                 let nameCity = data['name']
-                // let icn = data['weather']['icon']
                 let icn = data.weather[0].icon;                
-                console.log(icn)
                 let localTemp = data['main']['temp']
                 let windSpeed = data['wind']['speed']
                 let humid = data['main']['humidity']
@@ -64,6 +61,31 @@ let getCity = function(city) {
         }
     });
 };
+
+//Get date, icon, temp, wind, humidity
+//date - dt_txt (day 1 is next day)
+//icon - weather.icon
+//temp -temp day or main temp i dont know
+//wind - wind speed
+//humidity - main humidity
+let getForcast = function(lat, lon) {
+    // let forcastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`;
+    let forcastURL = `https://api.openweathermap.org/data/2.5/forecast/daily?lat=${lat}&lon=${lon}&cnt=5&appid=447b3007c14c6a40015847c686fd487a`
+    fetch(forcastURL)
+    .then(function(response) {
+        console.log(response);
+        response.json().then(function(data) {
+            console.log(data);
+            let ficn = data.weather[0].icon;
+            console.log(ficn)                
+            let flocalTemp = data['main']['temp']
+            console.log(flocalTemp)
+            // let fwindSpeed = data['wind']['speed']
+            // let fhumid = data['main']['humidity']
+
+        })
+    })
+}
 
 cityFormEl.addEventListener('submit', formInputSubmit);
 
