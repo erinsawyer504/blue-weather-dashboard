@@ -14,11 +14,12 @@ let APIKey = "447b3007c14c6a40015847c686fd487a";
 
 // let queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInputEl + "&units=imperial&appid=" + APIKey;
 
-//TODO: add a search for a city
+////add a search for a city
 //TODO: add in buttons for previous cities searched
-//TODO: show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
+////show city searched with current date, weather icon, temp (deg F), wind (MPH), humdity(%)
 //TODO: show 5 Day Forcast for city searched
 //TODO: add local storage
+//TODO: add show class for #cityinfo so that the border only shows when a city is searched
 
 let formInputSubmit = function (event) {
     event.preventDefault();
@@ -41,17 +42,21 @@ let getCity = function(city) {
             response.json().then(function(data) {
                 console.log(data);
                 let nameCity = data['name']
-                let icn = data['weather']['icon']
+                // let icn = data['weather']['icon']
+                let icn = data.weather[0].icon;                
                 console.log(icn)
                 let localTemp = data['main']['temp']
                 let windSpeed = data['wind']['speed']
                 let humid = data['main']['humidity']
 
             cityNameEl.innerHTML=`${nameCity}`
-            weatherIconEl.innerHTML = `${icn}`
+            weatherIconEl.innerHTML = `<img src="./assets/icons/${icn}.png"/> `
             tempEl.innerHTML = `Temp: ${localTemp}°F`
             windEl.innerHTML = `Wind: ${windSpeed} MPH`
             humidityEl.innerHTML = `Humidity: ${humid}%`
+            // Displays current date 
+            const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
+            $('#currentDate').append($day);
 
             });
         } else {
@@ -63,5 +68,5 @@ let getCity = function(city) {
 cityFormEl.addEventListener('submit', formInputSubmit);
 
 // Displays current date in the header as Day of week, Month date (i.e. Monday, January 2)
-const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
-$('#currentDate').append($day);
+// const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
+// $('#currentDate').append($day);
