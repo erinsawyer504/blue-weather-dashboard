@@ -25,9 +25,9 @@
         </aside>
         <main>
             <div id="cityInfo">
-                <div id="cityName"></div>
-                <div id="currentDate"></div>
-                <div id="weatherIcon"></div>
+                <div id="cityName">City Name: </div>
+                <div id="currentDate">Current Date: </div>
+                <div id="weatherIcon">Icon: </div>
                 <div id="temp">°F</div>
                 <div id="wind">MPH</div>
                 <div id="humidity">%</div>
@@ -37,6 +37,13 @@
         </main>
         <footer></footer>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+        integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+        <script>dayjs.extend(window.dayjs_plugin_utc)</script>
+    
 
         <script src="./assets/js/script.js"></script>    
     </body>
