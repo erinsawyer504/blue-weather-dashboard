@@ -38,7 +38,7 @@ header h1 {
     display: grid;
     grid-template-columns: 200px 200px 200px;
 }
-#cityInfo {
+.cityInfoClass {
     border-style: solid;
     border-radius: 5px;
 }
