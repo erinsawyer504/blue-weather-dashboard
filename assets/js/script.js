@@ -16,7 +16,9 @@ let btnEl = document.querySelector('.btn');
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
 //TODO: add local storage
+//TODO: add event listener to click on past searched cities
 //TODO: add 5 day forecast headline
+//TODO: fix date in 5 day forecast
 
 let formInputSubmit = function (event) {
     event.preventDefault();
@@ -38,7 +40,6 @@ let formInputSubmit = function (event) {
 }
 
 //Gets the weather for that day in the city user searches for
-
 let getCity = function(city) {
     let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial&appid=" + APIKey;
 
@@ -48,23 +49,24 @@ let getCity = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
+                
                 let nameCity = data['name']
                 let icn = data.weather[0].icon;                
                 let localTemp = data['main']['temp']
                 let windSpeed = data['wind']['speed']
                 let humid = data['main']['humidity']
-
-            cityNameEl.innerHTML=`${nameCity}`
-            weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `
-            tempEl.innerHTML = `Temp: ${localTemp}°F`
-            windEl.innerHTML = `Wind: ${windSpeed} MPH`
-            humidityEl.innerHTML = `Humidity: ${humid}%`
-            cityInfoEl.className="cityInfoClass"
-            
+                
+                //adding above variables to HTML
+                cityNameEl.innerHTML=`${nameCity}`
+                weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `
+                tempEl.innerHTML = `Temp: ${localTemp}°F`
+                windEl.innerHTML = `Wind: ${windSpeed} MPH`
+                humidityEl.innerHTML = `Humidity: ${humid}%`
+                cityInfoEl.className="cityInfoClass"
+                
             // Displays current date
             const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
             $('#currentDate').append($day);
-            
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -82,7 +84,7 @@ let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&un
         response.json().then(function(data) {
             console.log(data);
             for (let i=0; i < data.list.length; i+=8){
-                console.log(i);
+                //adding loop variables to HTML
                 document.getElementById("day" +(i) +"Date").innerHTML = "Date: " + data.list[i].dt_txt;
                 document.getElementById("day" +(i) +"Icon").innerHTML = `<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png"/>`;
                 document.getElementById("day" +(i) +"Temp").innerHTML = "Temp: " + data.list[i].main.temp + "°F";
