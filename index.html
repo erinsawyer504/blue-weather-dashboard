@@ -11,69 +11,69 @@
         <header class="header-container">
             <h1 id="title">Weather Dashboard</h1>
         </header>
-        <aside class="side-container">
-            <div class="side">
-                <h2 class="side-header">Search for a City:</h2>
-                <form id="city-form" class="side-body">
-                    <label class="form-label" for="cityName"></label>
-                    <input name="city" id="city" type="text" autofocus="true" class="form-input" />
-                    <button type="submit" class="btn">Search</button>
-                </form>
-            </div>
-            <div class="list-container">
-                <h4>Place holder for searched .  WIll be empty once working on this part</h4>
-                <ul>
-                </ul>
-            </div>
-        </aside>
-        <main class="weather-container">
-            <div id="cityInfo">
-                <h2 id="cityName"></h2>
-                <h2 id="currentDate"></h2>
-                <p id="weatherIcon"></p>
-                <p id="temp"></p>
-                <p id="wind"></p>
-                <p id="humidity"></p>
-            </div>
-            <div id="forecast">
-                <h3>5 Day Forcast:</h3>
-                <div class="forcast-card" id="day1">
-                    <p id="day1Date"></p>
-                    <p id="day1Icon"></p>
-                    <p id="day1Temp"></p>
-                    <p id="day1Wind"></p>
-                    <p id="day1Humidity"></p>
+        <main>
+            <aside class="side-container">
+                <div class="side">
+                    <h2 class="side-header">Search for a City:</h2>
+                    <form id="city-form" class="side-body">
+                        <label class="form-label" for="cityName"></label>
+                        <input name="city" id="city" type="text" autofocus="true" class="form-input" />
+                        <button type="submit" class="btn">Search</button>
+                    </form>
                 </div>
-                <div class="forcast-card" id="day2">
-                    <p id="day2Date"></p>
-                    <p id="day2Icon"></p>
-                    <p id="day2Temp"></p>
-                    <p id="day2Wind"></p>
-                    <p id="day2Humidity"></p>
+                <div class="list-container">
+                    <ul>
+                    </ul>
+                </div>
+            </aside>
+            <section class="weather-container">
+                <div id="cityInfo">
+                    <h2 id="cityName"></h2>
+                    <h2 id="currentDate"></h2>
+                    <p id="weatherIcon"></p>
+                    <p class="city-info" id="temp"></p>
+                    <p class="city-info" id="wind"></p>
+                    <p class="city-info" id="humidity"></p>
+                </div>
+                <div class="forecast">
+                    <div class="forecast-card" id="day0">
+                        <p id="day0Date"></p>
+                        <p id="day0Icon"></p>
+                        <p id="day0Temp"></p>
+                        <p id="day0Wind"></p>
+                        <p id="day0Humidity"></p>
+                    </div>
+                    <div class="forecast-card" id="day8">
+                        <p id="day8Date"></p>
+                        <p id="day8Icon"></p>
+                        <p id="day8Temp"></p>
+                        <p id="day8Wind"></p>
+                        <p id="day8Humidity"></p>
 
-                </div>  
-                <div class="forcast-card" id="day3">
-                    <p id="day3Date"></p>
-                    <p id="day3Icon"></p>
-                    <p id="day3Temp"></p>
-                    <p id="day3Wind"></p>
-                    <p id="day3Humidity"></p>
-                </div>    
-                <div class="forcast-card" id="day4">
-                    <p id="day4Date"></p>
-                    <p id="day4Icon"></p>
-                    <p id="day4Temp"></p>
-                    <p id="day4Wind"></p>
-                    <p id="day4Humidity"></p>
-                </div>    
-                <div class="forcast-card" id="day5">
-                    <p id="day5Date"></p>
-                    <p id="day5Icon"></p>
-                    <p id="day5Temp"></p>
-                    <p id="day5Wind"></p>
-                    <p id="day5Humidity"></p>
-                </div>                  
-            </div>
+                    </div>  
+                    <div class="forecast-card" id="day16">
+                        <p id="day16Date"></p>
+                        <p id="day16Icon"></p>
+                        <p id="day16Temp"></p>
+                        <p id="day16Wind"></p>
+                        <p id="day16Humidity"></p>
+                    </div>    
+                    <div class="forecast-card" id="day24">
+                        <p id="day24Date"></p>
+                        <p id="day24Icon"></p>
+                        <p id="day24Temp"></p>
+                        <p id="day24Wind"></p>
+                        <p id="day24Humidity"></p>
+                    </div>    
+                    <div class="forecast-card" id="day32">
+                        <p id="day32Date"></p>
+                        <p id="day32Icon"></p>
+                        <p id="day32Temp"></p>
+                        <p id="day32Wind"></p>
+                        <p id="day32Humidity"></p>
+                    </div>                  
+                </div>
+            </section>
         </main>
         <footer></footer>
 
