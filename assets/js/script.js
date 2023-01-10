@@ -60,7 +60,8 @@ let getCity = function(city) {
             windEl.innerHTML = `Wind: ${windSpeed} MPH`
             humidityEl.innerHTML = `Humidity: ${humid}%`
             cityInfoEl.className="cityInfoClass"
-            // Displays current date 
+            // Displays current date
+            //TODO Fix date, keeps appending each time function is run
             const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
             $('#currentDate').append($day);
             
@@ -71,12 +72,13 @@ let getCity = function(city) {
     });
 };
 
-//Get date, icon, temp, wind, humidity
-//date - dt_txt (day 1 is next day)
-//icon - weather.icon
-//temp -temp day or main temp i dont know
-//wind - wind speed
-//humidity - main humidity
+// Get date, icon, temp, wind, humidity
+// date - dt_txt (day 1 is next day)
+// icon - weather.icon
+// temp -temp day or main temp i dont know
+// wind - wind speed
+// humidity - main humidity
+
 // let getForcast = function(city) {
 // let forcastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${APIKey}`;
 //     fetch(forcastURL)
@@ -84,12 +86,13 @@ let getCity = function(city) {
 //         console.log(response);
 //         response.json().then(function(data) {
 //             console.log(data);
-            // let ficn = data.weather[0].icon;
-            // console.log(ficn)                
-//             let flocalTemp = data['main']['temp']
+//             // let ficn = data.weather[0].icon;
+//             // console.log(ficn)                
+            
+//             let flocalTemp = data['list'][0]['main']['temp']
 //             console.log(flocalTemp)
-            // let fwindSpeed = data['wind']['speed']
-            // let fhumid = data['main']['humidity']
+//             // let fwindSpeed = data['wind']['speed']
+//             // let fhumid = data['main']['humidity']
 
 //         })
 //     })
