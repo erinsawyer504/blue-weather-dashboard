@@ -24,7 +24,7 @@ header {
     background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 54%, rgba(2,0,36,1) 100%);
     color: #ffffff;
     text-align: center;
- }
+}
 
 header h1 {
     display: inline-block;
@@ -51,4 +51,9 @@ header h1 {
 .side {
     border-bottom: solid;
     border-color: var(--ltblue);
+}
+
+.forcast-card {
+    background: rgb(48, 47, 47);
+    color: white;
 }
