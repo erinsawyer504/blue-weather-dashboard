@@ -133,6 +133,7 @@ section {
     border-style: solid;
     border-radius: 5px;
     padding: 50px;
+    margin-bottom: 25px;
     font-weight: bold;
 }
 
@@ -147,5 +148,5 @@ section {
     border-style: solid;
     border-width: 1px;
     border-radius: 5px;
-    text-size: 15px;
+    font-size: 15px;
 }

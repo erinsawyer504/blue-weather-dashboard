@@ -2,6 +2,7 @@ let cityFormEl = document.querySelector('#city-form');
 let cityInputEl = document.querySelector('#city');
 let cityInfoEl = document.querySelector('#cityInfo');
 let forecastEl = document.querySelector('.forecast');
+let forecast5El = document.querySelector('#forecast5');
 let cityNameEl = document.querySelector('#cityName');
 let currentDateEl = document.querySelector('#currentDate');
 let weatherIconEl = document.querySelector('#weatherIcon');
@@ -9,6 +10,7 @@ let tempEl = document.querySelector('#temp');
 let windEl = document.querySelector('#wind');
 let humidityEl = document.querySelector('#humidity');
 let btnEl = document.querySelector('.btn');
+let clickCity = document.querySelector('#show-city');
 
 
 
@@ -16,8 +18,8 @@ let btnEl = document.querySelector('.btn');
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
 //TODO: add local storage
-//TODO: add event listener to click on past searched cities
-//TODO: add 5 day forecast headline
+////: add event listener to click on past searched cities
+////: add 5 day forecast headline
 //TODO: fix date in 5 day forecast
 
 let formInputSubmit = function (event) {
@@ -31,8 +33,12 @@ let formInputSubmit = function (event) {
         let li = document.createElement("li");
         li.textContent = city.value;
         ul.prepend(li);
+        li.setAttribute("id", cityInput);
+        console.log(li);
         cityInputEl.value = '';
         currentDateEl.innerHTML='';
+        forecast5El.innerHTML = '5 Day Forecast: ';
+        localStorage.setItem("cityKey", cityInput);
 
     } else {
         alert('Please enter a city name');
@@ -96,4 +102,14 @@ let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&un
     })
 }
 
+//Creating function to click on previous cities to show the weather
+let buttonClickHandler = function(event) {
+    let clickedCity = event.target.getAttribute('id');
+    getCity(clickedCity);
+    getForecast(clickedCity);
+    currentDateEl.innerHTML='';
+}
+
+
+clickCity.addEventListener('click', buttonClickHandler);
 cityFormEl.addEventListener('submit', formInputSubmit);
