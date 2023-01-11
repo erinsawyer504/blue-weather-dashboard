@@ -19,13 +19,15 @@ main {
 }
 
 header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding-top: 20px;
     padding-bottom: 20px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     background: rgb(0,212,255);
     background: linear-gradient(90deg, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 54%, rgba(2,0,36,1) 100%);
     color: #ffffff;
-    text-align: center;
 }
 
 header h1 {

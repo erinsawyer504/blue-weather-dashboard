@@ -11,6 +11,7 @@ let humidityEl = document.querySelector('#humidity');
 let btnEl = document.querySelector('.btn');
 let clickCity = document.querySelector('#show-city');
 
+
 //API key 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
@@ -27,21 +28,30 @@ let formInputSubmit = function (event) {
     if(cityInput){
         getCity(cityInput);
         getForecast(cityInput);
-        //adding searched cities to list
+        // updateUI();
+        // adding searched cities to list
         let ul = document.getElementsByTagName("ul")[0];
         let li = document.createElement("li");
         li.textContent = city.value;
         ul.prepend(li);
         li.setAttribute("id", cityInput);
-        console.log(li);
         cityInputEl.value = '';
         forecast5El.innerHTML = '5 Day Forecast: ';
-        localStorage.setItem("cityKey", cityInput);
+        localStorage.setItem(cityInput, cityInput);
 
     } else {
         alert('Please enter a city name');
     }
 }
+//set LocalStorage
+// let updateUI = function () {
+//     let values = [], keys = Object.keys(localStorage), i = keys.length;
+//     while (i--) { values.push( localStorage.getItem(keys[i]) ); }
+//     console.log("values ", values, "keys", keys);
+
+// } 
+
+
 
 //Gets the weather for that day in the city user searches for
 let getCity = function(city) {
@@ -55,21 +65,21 @@ let getCity = function(city) {
                 console.log(data);
                 // Displays current date & adds to HTML
                 let day = new Date().toLocaleDateString();
-                let nameCity = data['name']
+                //splitting date so it can be put in MM/DD/YYYY format
+                let date = day.split("/",3);
+                let nameCity = data['name'];
                 let icn = data.weather[0].icon;                
-                let localTemp = data['main']['temp']
-                let windSpeed = data['wind']['speed']
-                let humid = data['main']['humidity']
+                let localTemp = data['main']['temp'];
+                let windSpeed = data['wind']['speed'];
+                let humid = data['main']['humidity'];
                 
                 //adding above variables to HTML
-                cityNameEl.innerHTML=`${nameCity} (${day})`
-                weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `
-                tempEl.innerHTML = `Temp: ${localTemp}°F`
-                windEl.innerHTML = `Wind: ${windSpeed} MPH`
-                humidityEl.innerHTML = `Humidity: ${humid}%`
-                cityInfoEl.className="cityInfoClass"
-                
-
+                cityNameEl.innerHTML = nameCity + " (" + date[0] + "/" + date[1] + "/" + date[2] + ")";
+                weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `;
+                tempEl.innerHTML = `Temp: ${localTemp}°F`;
+                windEl.innerHTML = `Wind: ${windSpeed} MPH`;
+                humidityEl.innerHTML = `Humidity: ${humid}%`;
+                cityInfoEl.className="cityInfoClass";
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -86,8 +96,8 @@ let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&un
         console.log(response);
         response.json().then(function(data) {
             console.log(data);
-            for (let i=0; i < data.list.length; i+=8){
-
+            //Setting for loop at i =7 & i+= 8 to get next day weather since api does forecast in 3 hour increments
+            for (let i=7; i < data.list.length; i+=8){
                 let date = data.list[i].dt_txt;
                 //splitting the date so it can be formatted as MM/DD/YYYY
                 let dateSplit = date.split(/[-\s]+/);
