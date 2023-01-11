@@ -12,15 +12,15 @@ let humidityEl = document.querySelector('#humidity');
 let btnEl = document.querySelector('.btn');
 let clickCity = document.querySelector('#show-city');
 
-
-
 //API key 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
 //TODO: add local storage
-////: add event listener to click on past searched cities
-////: add 5 day forecast headline
-//TODO: fix date in 5 day forecast
+    //TODO - put searched cities into an array of size N (5? 8? 10?).
+    //TODO - once you reach N cities, remove the oldest city prior to adding a new city
+    //TODO - when updating the array of cities, save it to local storage
+    //TODO - when the page loads (there is an event handler for that...) load the city array from local storage (if it exists)
+
 
 let formInputSubmit = function (event) {
     event.preventDefault();
@@ -36,7 +36,6 @@ let formInputSubmit = function (event) {
         li.setAttribute("id", cityInput);
         console.log(li);
         cityInputEl.value = '';
-        currentDateEl.innerHTML='';
         forecast5El.innerHTML = '5 Day Forecast: ';
         localStorage.setItem("cityKey", cityInput);
 
@@ -70,9 +69,9 @@ let getCity = function(city) {
                 humidityEl.innerHTML = `Humidity: ${humid}%`
                 cityInfoEl.className="cityInfoClass"
                 
-            // Displays current date
-            const $day = dayjs().format('MM' + '/' + 'DD' + '/' + 'YYYY');
-            $('#currentDate').append($day);
+            // Displays current date & adds to HTML
+            let day = new Date().toLocaleDateString();
+            currentDateEl.innerHTML = `${day}`;
             });
         } else {
             alert('Error: ' + response.statusText);
@@ -91,7 +90,10 @@ let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&un
             console.log(data);
             for (let i=0; i < data.list.length; i+=8){
                 //adding loop variables to HTML
-                document.getElementById("day" +(i) +"Date").innerHTML = "Date: " + data.list[i].dt_txt;
+                let date = data.list[i].dt_txt;
+                //splitting the date so it can be formatted as MM/DD/YYYY
+                let dateSplit = date.split(/[-\s]+/);
+                document.getElementById("day" +(i) +"Date").innerHTML = "Date: " + dateSplit[1] + "/" + dateSplit[2] + "/" + dateSplit[0];
                 document.getElementById("day" +(i) +"Icon").innerHTML = `<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png"/>`;
                 document.getElementById("day" +(i) +"Temp").innerHTML = "Temp: " + data.list[i].main.temp + "°F";
                 document.getElementById("day" +(i) +"Wind").innerHTML = "Wind: " + data.list[i].wind.speed + " MPH";
@@ -107,7 +109,6 @@ let buttonClickHandler = function(event) {
     let clickedCity = event.target.getAttribute('id');
     getCity(clickedCity);
     getForecast(clickedCity);
-    currentDateEl.innerHTML='';
 }
 
 
