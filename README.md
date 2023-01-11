@@ -1,8 +1,22 @@
 # blue-weather-dashboard
 
-https://openweathermap.org/current#name
+## About
 
-https://openweathermap.org/forecast5
+This challenge was to work with serverside APIs, specifically openweathermap.org's.  It was a big task since all the HTML, CSS, JavaScript had to be done by scratch.  
+
+I first broke it down into doing the items I knew how to do, such as setting up the skeleton of the HTML, adding classes/ids for different divs, and creating variables in JavaScript that I knew I would be using and manipulating.  From there, I started a TODO list in the JavaScript of different goals, functions, ect that I would need to write, and marked them off as they were completed. 
+
+It was a challenge, but a fun challenge, to console.log the different variables and functions that I used to see the data that I wanted to capture and figure out how to grab that data to be able to use it in my code and website.  
+
+Although minor in comparison, I think my biggest accomplishment that I am most proud of, is getting the date back from the getForecast function and splitting it in a way so I could display the date in a MM/DD/YYYY format.  
+
+Or maybe that was just one of the last things I did so it sticks out in my memory! 😊
+
+## Links
+github Repository: https://github.com/erinsawyer504/blue-weather-dashboard
+
+Deployed Website: 
+
 
 ## Your Task
 
@@ -40,67 +54,9 @@ THEN I am again presented with current and future conditions for that city
 
 The following image shows the web application's appearance and functionality:
 
-![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](./assets/images/06-server-side-apis-homework-demo.png)
+![The weather app includes a search option, a list of cities, and a five-day forecast and current weather conditions for Atlanta.](./assets/images/blue_weather_app.PNG)
 
-## Grading Requirements
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> * A repository that has no code
->
-> * A repository that includes a unique name but nothing else
->
-> * A repository that includes only a README file but nothing else
->
-> * A repository that only includes starter code
-
-This Challenge is graded based on the following criteria: 
-
-### Technical Acceptance Criteria: 40%
-
-* Satisfies all of the above acceptance criteria plus the following:
-
-    * Uses the OpenWeather API to retrieve weather data.
-
-    * Uses `localStorage` to store persistent data.
-
-### Deployment: 32%
-
-* Application deployed at live URL.
-
-* Application loads with no errors.
-
-* Application GitHub URL submitted.
-
-* GitHub repository that contains application code.
-
-### Application Quality: 15%
-
-* Application user experience is intuitive and easy to navigate.
-
-* Application user interface style is clean and polished.
-
-* Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-* Repository has a unique name.
-
-* Repository follows best practices for file structure and naming conventions.
-
-* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-* Repository contains multiple descriptive commit messages.
-
-* Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-* The URL of the functional, deployed application.
-
-* The URL of the GitHub repository. Give the repository a unique name and include a readme describing the project.
 
 - - -
 © 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
