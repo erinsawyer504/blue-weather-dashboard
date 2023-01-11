@@ -15,12 +15,21 @@ let clickCity = document.querySelector('#show-city');
 //API key 
 let APIKey = "447b3007c14c6a40015847c686fd487a";
 
-//TODO: add local storage
-    //TODO - put searched cities into an array of size N (5? 8? 10?).
-    //TODO - once you reach N cities, remove the oldest city prior to adding a new city
-    //TODO - when updating the array of cities, save it to local storage
-    //TODO - when the page loads (there is an event handler for that...) load the city array from local storage (if it exists)
-
+//function pulls the information out of the local storage and adds it as a list item under the search field in alphabetized order
+let updateUI = function () {
+    let values = [], keys = Object.keys(localStorage).sort(), i = keys.length;
+    while (i--) { values.push( localStorage.getItem(keys[i]) ); }
+    let ul = document.getElementsByTagName("ul")[0];
+    //to prevent logging previous searched cities
+    ul.innerHTML="";
+    for (i = 0; i<values.length; i++){
+    let li = document.createElement("li");
+    li.textContent = values[i];
+    ul.prepend(li);
+    //gives the list items an attribute so it can be clicked on and will display the city weather again when buttonClickHandler() is called
+    li.setAttribute("id", values[i]);
+    }
+} 
 
 let formInputSubmit = function (event) {
     event.preventDefault();
@@ -28,29 +37,19 @@ let formInputSubmit = function (event) {
     if(cityInput){
         getCity(cityInput);
         getForecast(cityInput);
-        // updateUI();
-        // adding searched cities to list
-        let ul = document.getElementsByTagName("ul")[0];
-        let li = document.createElement("li");
-        li.textContent = city.value;
-        ul.prepend(li);
-        li.setAttribute("id", cityInput);
         cityInputEl.value = '';
         forecast5El.innerHTML = '5 Day Forecast: ';
         localStorage.setItem(cityInput, cityInput);
-
+        updateUI();
     } else {
         alert('Please enter a city name');
     }
 }
-//set LocalStorage
-// let updateUI = function () {
-//     let values = [], keys = Object.keys(localStorage), i = keys.length;
-//     while (i--) { values.push( localStorage.getItem(keys[i]) ); }
-//     console.log("values ", values, "keys", keys);
 
-// } 
-
+//loads local storage when page loads
+window.addEventListener("DOMContentLoaded", function(){
+updateUI();
+})
 
 
 //Gets the weather for that day in the city user searches for
@@ -63,7 +62,7 @@ let getCity = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
-                // Displays current date & adds to HTML
+                // Displays current date
                 let day = new Date().toLocaleDateString();
                 //splitting date so it can be put in MM/DD/YYYY format
                 let date = day.split("/",3);
