@@ -1,5 +1,5 @@
 # blue-weather-dashboard
-![Cat with Umbrella Icon](./assets/images/catUmbrella.png)
+![Cat with Umbrella Icon](./assets/images/catUmbrella2.png)
 
 ## About
 
