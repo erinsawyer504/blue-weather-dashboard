@@ -4,7 +4,6 @@ let cityInfoEl = document.querySelector('#cityInfo');
 let forecastEl = document.querySelector('.forecast');
 let forecast5El = document.querySelector('#forecast5');
 let cityNameEl = document.querySelector('#cityName');
-let currentDateEl = document.querySelector('#currentDate');
 let weatherIconEl = document.querySelector('#weatherIcon');
 let tempEl = document.querySelector('#temp');
 let windEl = document.querySelector('#wind');
@@ -54,7 +53,8 @@ let getCity = function(city) {
             console.log(response);
             response.json().then(function(data) {
                 console.log(data);
-                
+                // Displays current date & adds to HTML
+                let day = new Date().toLocaleDateString();
                 let nameCity = data['name']
                 let icn = data.weather[0].icon;                
                 let localTemp = data['main']['temp']
@@ -62,16 +62,14 @@ let getCity = function(city) {
                 let humid = data['main']['humidity']
                 
                 //adding above variables to HTML
-                cityNameEl.innerHTML=`${nameCity}`
+                cityNameEl.innerHTML=`${nameCity} (${day})`
                 weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `
                 tempEl.innerHTML = `Temp: ${localTemp}°F`
                 windEl.innerHTML = `Wind: ${windSpeed} MPH`
                 humidityEl.innerHTML = `Humidity: ${humid}%`
                 cityInfoEl.className="cityInfoClass"
                 
-            // Displays current date & adds to HTML
-            let day = new Date().toLocaleDateString();
-            currentDateEl.innerHTML = `${day}`;
+
             });
         } else {
             alert('Error: ' + response.statusText);
