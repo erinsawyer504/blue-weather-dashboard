@@ -87,10 +87,11 @@ let forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&un
         response.json().then(function(data) {
             console.log(data);
             for (let i=0; i < data.list.length; i+=8){
-                //adding loop variables to HTML
+
                 let date = data.list[i].dt_txt;
                 //splitting the date so it can be formatted as MM/DD/YYYY
                 let dateSplit = date.split(/[-\s]+/);
+                //adding loop variables to HTML
                 document.getElementById("day" +(i) +"Date").innerHTML = "Date: " + dateSplit[1] + "/" + dateSplit[2] + "/" + dateSplit[0];
                 document.getElementById("day" +(i) +"Icon").innerHTML = `<img src="https://openweathermap.org/img/wn/${data.list[i].weather[0].icon}@2x.png"/>`;
                 document.getElementById("day" +(i) +"Temp").innerHTML = "Temp: " + data.list[i].main.temp + "°F";
