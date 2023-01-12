@@ -63,9 +63,7 @@ let getCity = function(city) {
             response.json().then(function(data) {
                 console.log(data);
                 // Displays current date
-                let day = new Date().toLocaleDateString();
-                //splitting date so it can be put in MM/DD/YYYY format
-                let date = day.split("/",3);
+                let day = new Date().toLocaleDateString("en-US");
                 let nameCity = data['name'];
                 let icn = data.weather[0].icon;                
                 let localTemp = data['main']['temp'];
@@ -73,7 +71,7 @@ let getCity = function(city) {
                 let humid = data['main']['humidity'];
                 
                 //adding above variables to HTML
-                cityNameEl.innerHTML = nameCity + " (" + date[0] + "/" + date[1] + "/" + date[2] + ")";
+                cityNameEl.innerHTML = nameCity + " (" + day + ")";
                 weatherIconEl.innerHTML = `<img src="https://openweathermap.org/img/wn/${icn}@2x.png"/> `;
                 tempEl.innerHTML = `Temp: ${localTemp}°F`;
                 windEl.innerHTML = `Wind: ${windSpeed} MPH`;
